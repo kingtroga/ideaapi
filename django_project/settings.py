@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-s22)3fsq&@sq^lym7d%q*g)mlk-l&yvzo3!o)ivji36t6jq#_h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.8.171', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -37,21 +37,34 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
+    # 3rd-party apps
+    'rest_framework',
+    'corsheaders',
+
     # Local
     'accounts.apps.AccountsConfig',
     'announcements.apps.AnnouncementsConfig',
+
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'django_project.urls'
 
@@ -126,3 +139,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+CORS_ORIGIN_WHITELIST = (
+    "http://localhost:8000",
+    "http://192.168.8.171:8000",
+)
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
