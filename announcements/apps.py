@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AnnoucementsConfig(AppConfig):
+class AnnouncementsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'annoucements'
+    name = 'announcements'

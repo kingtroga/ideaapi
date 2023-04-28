@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x3o3znk#9gb0zmubup$n0*w^i7sx$gk%2u63+ytvxha$byhlph'
+SECRET_KEY = 'django-insecure-s22)3fsq&@sq^lym7d%q*g)mlk-l&yvzo3!o)ivji36t6jq#_h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.8.171']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,26 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # 3rd-party apps
-    'rest_framework',
-    'corsheaders',
-
+    
     # Local
     'accounts.apps.AccountsConfig',
-    'annoucements.apps.AnnoucementsConfig'
+    'announcements.apps.AnnouncementsConfig',
 ]
-
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.AllowAny",
-    ],
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -64,11 +53,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = (
-    "http://localhost:8000",
-)
-
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
 ROOT_URLCONF = 'django_project.urls'
 
 TEMPLATES = [
