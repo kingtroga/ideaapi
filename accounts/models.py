@@ -10,6 +10,12 @@ class CustomUser(AbstractUser):
     is_staff = models.BooleanField(default=False)
     is_doctor = models.BooleanField(default=False)
 
+    def get_full_name(self):
+        if self.is_doctor:
+            return 'Dr. {}'.format(self.full_name)
+        else:
+            return self.full_name
+
     def save(self, *args, **kwargs):
         if not self.full_name:
             self.full_name = f"{self.first_name} {self.last_name}"
