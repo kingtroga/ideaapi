@@ -153,3 +153,11 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
+
+AUTHENTICATION_BACKENDS = [
+    'users.backends.CustomBackend', 
+    'django.contrib.auth.backends.ModelBackend',]
+
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'users.serializers.CustomLoginSerializer',
+}
