@@ -21,4 +21,5 @@ urlpatterns = [
     path('api/v1/', include('announcements.urls')),
     path('api-auth/', include("rest_framework.urls")),
     path('api/v1/user/', include('users.urls')),
+    path('api/v1/dj-rest-auth/', include('dj_rest_auth.urls')), # both are working for login
 ]

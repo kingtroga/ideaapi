@@ -2,6 +2,12 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 import random
 
+SECURITY_QUESTIONS_CHOICES = (
+    ('what is your favorite color?', 'What is your favorite color?'),
+    ('what is your mother\'s maiden name?', 'What is your mother\'s maiden name?'),
+    ('what is the name of your first pet?', 'What is the name of your first pet?'),
+)
+
 class CustomUser(AbstractUser):
     department = models.CharField(max_length=50, blank=True)
     program = models.CharField(max_length=50, blank=True)
@@ -10,6 +16,11 @@ class CustomUser(AbstractUser):
     full_name = models.CharField(max_length=255, blank=True)
     is_staff = models.BooleanField(default=False)
     is_doctor = models.BooleanField(default=False)
+    security_question = models.CharField(max_length=255, choices=SECURITY_QUESTIONS_CHOICES)
+    secureQusAns = models.CharField(max_length=255)
+
+    def check_answer(self, secureQusAns):
+        return self.secureQusAns == secureQusAns
 
     def get_full_name(self):
         if self.is_doctor:
