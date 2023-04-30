@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework.authtoken',
     'dj_rest_auth',
+    'drf_spectacular',
+    'allauth',
+    'allauth.account',
 
     # Local
     'accounts.apps.AccountsConfig',
@@ -58,7 +61,9 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
-    ]
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+
 }
 
 MIDDLEWARE = [
@@ -156,8 +161,15 @@ CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
 
 AUTHENTICATION_BACKENDS = [
     'users.backends.CustomBackend', 
+    'users.backends.CustomAuthBackend',
     'django.contrib.auth.backends.ModelBackend',]
 
 REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': 'users.serializers.CustomLoginSerializer',
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "iDea API Project",
+    "DESCRIPTION": "An information dissemantion app for MTU",
+    "VERSION": "1.0.0",
 }
