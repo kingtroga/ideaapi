@@ -86,3 +86,17 @@ class CustomPasswordChangeSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
+
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, style={'input_type': 'password'})
+
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'password', 'full_name', 'department', 'program', 'security_question', 'secureQusAns', 'is_staff', 'is_doctor')
+
+    def create(self, validated_data):
+        password = validated_data.pop('password')
+        user = CustomUser(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user

@@ -4,7 +4,8 @@ from .views import (
     CustomLogoutView, 
     CustomPasswordResetView, 
     CustomPasswordChangeView, 
-    SecurityQuestionView
+    SecurityQuestionView,
+    UserRegistrationView
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path('securequestion/<user_id>',SecurityQuestionView.as_view(), name="security_question" ),
     path('password/reset/', CustomPasswordResetView.as_view(), name='password_reset'),
     path('password/change/<uidb64>/<token>/', CustomPasswordChangeView.as_view(), name='password_change'),
+    path('register/', UserRegistrationView.as_view(), name='register'),
 ]

@@ -1,9 +1,15 @@
 from dj_rest_auth.views import LoginView
-from .serializers import CustomLoginSerializer, CustomPasswordResetSerializer, CustomPasswordResetSerializer, CustomPasswordChangeSerializer
+from .serializers import (
+    CustomLoginSerializer,
+    CustomPasswordResetSerializer, 
+    CustomPasswordResetSerializer, 
+    CustomPasswordChangeSerializer,
+    UserRegistrationSerializer
+    )
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from accounts.models import CustomUser
 from rest_framework import generics, status
@@ -14,6 +20,9 @@ from rest_framework.response import Response
 from rest_framework import serializers
 
 
+class UserRegistrationView(generics.CreateAPIView):
+    serializer_class = UserRegistrationSerializer
+    permission_classes = [AllowAny]
 
 class CustomLoginView(LoginView):
     serializer_class = CustomLoginSerializer
