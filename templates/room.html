@@ -22,10 +22,23 @@
             + "d97a6e40a5f9cdb62e8400f8c1e60d627ae120e0" //accessToken
             + "/"
         );
-
+        let chatLog = document.querySelector('#chat-log')
+        console.log(chatLog)
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
+            console.log(data);
+            console.log(data.type)
+            switch (data.type) {
+                case "chat_message":
+                    chatLog.value += data.user + ": " + data.message + "\n";  // new
+                    break;
+                default:
+                    console.error("Unknown message type!");
+                    break;
+            }
+
+            // scroll 'chatLog' to the bottom
+            chatLog.scrollTop = chatLog.scrollHeight;
         };
 
         chatSocket.onclose = function(e) {
