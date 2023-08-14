@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,12 +45,15 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework.authtoken",
     'dj_rest_auth',
+    'drf_spectacular',
+    
 
 
 
     # Local
     "accounts.apps.AccountsConfig",
     "chat.apps.ChatConfig",
+    "users.apps.UsersConfig",
 ]
 
 SITE_ID = 1
@@ -62,7 +66,16 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "iDea API",
+    "DESCRIPTION": "A Social Network",
+    "VERSION": "1.0.0",
+    # OTHER SETTINGS
+}
+
 
 
 
@@ -172,7 +185,8 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
 # dj-rest-auth configuration for USERID e.g 19010301043
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_AUTHENTICATION_METHOD = 'userID'
+
 
 
 
