@@ -1,5 +1,6 @@
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.db import models
+import os
 
 
 
@@ -41,7 +42,8 @@ class CustomUserManager(BaseUserManager):
 
 
 
-
+def get_upload_path(instance, filename):
+    return os.path.join('images', 'avatars', str(instance.pk), filename)
 
 
 
@@ -50,7 +52,7 @@ class CustomUser(AbstractBaseUser):
     userID = models.PositiveIntegerField(unique=True, blank=False, null=False)
     is_mtu_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-
+    avatar = models.ImageField(upload_to=get_upload_path, blank=True, null=True)
     objects = CustomUserManager()
 
     # username

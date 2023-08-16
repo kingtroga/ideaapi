@@ -191,4 +191,6 @@ ACCOUNT_AUTHENTICATION_METHOD = 'userID'
 
 
 
-
+# avatar
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
