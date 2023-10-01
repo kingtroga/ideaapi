@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #3rd party Apps,
-    'rest_framework',
+    
     'rest_framework_simplejwt',
+    'rest_framework',
 
     'accounts.apps.AccountsConfig',
 ]
@@ -56,6 +57,9 @@ REST_FRAMEWORK = {
     )
 }
 
+SIMPLE_JWT = {
+    'USER_ID_FIELD': 'user_id',
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
