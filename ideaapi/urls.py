@@ -31,4 +31,8 @@ urlpatterns = [
     #user registration
     path('api/account/', include('accounts.api.urls')),
 
+    #user communication (chatting)
+    path("chat/", include("chat.urls")),
+
+
 ]
