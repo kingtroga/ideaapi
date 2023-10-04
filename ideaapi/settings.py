@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
 
     'accounts.apps.AccountsConfig',
+    'chat.apps.ChatConfig',
 ]
 
 REST_FRAMEWORK = {
@@ -100,7 +102,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ideaapi.wsgi.application'
-
+ASGI_APPLICATION = "ideaapi.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
