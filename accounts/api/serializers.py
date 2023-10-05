@@ -25,3 +25,10 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'password': "Passwords must match."})
         user.set_password(password)
         user.save()
+
+
+class UsersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['user_id', 'full_name']
+        

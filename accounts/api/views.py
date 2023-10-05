@@ -1,8 +1,13 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import generics, permissions
 
 from accounts.api.serializers import UserRegistrationSerializer
+from accounts.api.serializers import UsersSerializer
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 @api_view(['POST',])
 def registration_view(request):
@@ -18,3 +23,10 @@ def registration_view(request):
         else:
             data = serializer.errors
         return Response(data)
+    
+
+class UsersView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
