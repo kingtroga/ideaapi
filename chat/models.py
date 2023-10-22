@@ -29,4 +29,4 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user.username}: {self.content} [{self.timestamp}]'
+        return f'{self.user.full_name}: {self.content} [{self.timestamp}]'

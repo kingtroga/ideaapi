@@ -5,6 +5,6 @@ from accounts.api.views import (
 from accounts.api.views import UsersView
 
 urlpatterns = [
-    path('signup/', registration_view, name='signup'),
+    path('register/', registration_view, name='register'),
     path('users/', UsersView.as_view(), name='users'),
 ]
